@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox
+from tkinter import ttk, scrolledtext, filedialog, messagebox
 from influxdb import InfluxDBClient
 import pandas as pd
 import pytz
@@ -198,7 +198,7 @@ class InfluxDBGUI(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("InfluxDB Query Tool with CSV Measurements")
-        self.geometry("750x700")
+        self.geometry("750x750")
         self.create_widgets()
 
     def create_widgets(self):
@@ -267,11 +267,16 @@ class InfluxDBGUI(tk.Tk):
         frame_csv.grid(column=0, row=2, padx=10, pady=10, sticky="W")
 
         self.use_csv_var = tk.BooleanVar(value=True)
-        self.csv_filename_var = tk.StringVar(value="measurements_fields.txt")
+        self.csv_filename_var = tk.StringVar(value="")  # Initially empty
 
         ttk.Checkbutton(frame_csv, text="Use CSV for Measurement Fields", variable=self.use_csv_var).grid(column=0, row=0, sticky="W", padx=5, pady=2)
         ttk.Label(frame_csv, text="CSV Filename:").grid(column=0, row=1, sticky="W", padx=5)
-        ttk.Entry(frame_csv, width=30, textvariable=self.csv_filename_var).grid(column=1, row=1, padx=5, pady=2)
+        csv_filename_entry = ttk.Entry(frame_csv, width=40, textvariable=self.csv_filename_var)
+        csv_filename_entry.grid(column=1, row=1, padx=5, pady=2)
+
+        # Button to select CSV file via dialog.
+        self.select_csv_btn = ttk.Button(frame_csv, text="Select File", command=self.select_csv_file)
+        self.select_csv_btn.grid(column=2, row=1, padx=5, pady=2)
 
         # ==================================================
         # Run Button and Output Display
@@ -282,6 +287,15 @@ class InfluxDBGUI(tk.Tk):
         self.output_text = scrolledtext.ScrolledText(self, width=90, height=25, wrap=tk.WORD)
         self.output_text.grid(column=0, row=4, padx=10, pady=10)
 
+    def select_csv_file(self):
+        """ Opens a file dialog for selecting the CSV (or text) file and sets the filename variable. """
+        filename = filedialog.askopenfilename(
+            title="Select Measurement Fields File",
+            filetypes=[("Text Files", "*.txt"), ("CSV Files", "*.csv"), ("All Files", "*.*")]
+        )
+        if filename:
+            self.csv_filename_var.set(filename)
+    
     def append_output(self, message):
         self.output_text.insert(tk.END, message)
         self.output_text.see(tk.END)
