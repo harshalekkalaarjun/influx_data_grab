@@ -1,0 +1,216 @@
+bms_state_limits	
+    battery_dischrg_status
+    battery_mpe_status
+    ready_power_status
+    chrg_power_status
+    battery_dischrg_limit
+    battery_chrg_limit
+    chrg_interlock_state
+    chrg_status
+    chrgr_highest_voltage
+    chrgr_highest_current
+    j1772_current_limit
+    j1772_plug_state
+
+bms_battery_usage	
+    battery_current
+    battery_voltage
+
+bms_battery_weather	
+    battery_soc
+    battery_amp_hours
+    battery_highest_temp
+    highest_temp_thermistor_id
+    battery_lowest_temp
+    lowest_temp_thermistor_id
+    battery_average_temp
+    bms_temp
+    battery_adaptive_soc
+    battery_adaptive_amp_hours
+    auxilary_battery_voltage
+
+charger_state_limits	
+    chrgr_output_voltage
+    chrgr_output_current
+    chrgr_temp
+    chrgr_hardware_error_status
+    chrgr_temp_error_status
+    chrgr_input_voltage_error_status
+    chrgr_communication_error_status
+
+bms_fault_and_safety_state	
+    voltage_fail_safe_active
+    current_fail_safe_active
+    relay_fail_safe_active
+    cell_balancing_active_non_fail_safe_mode
+    chrg_interlock_fail_safe_active
+    thermistor_b_value_table_invalid
+    input_power_supply_fail_safe_active
+    dischrg_current_limit_reduced_due_to_low_soc
+    dischrg_current_limit_reduced_due_to_high_cell_resistance
+    dischrg_current_limit_reduced_due_to_temp
+    dischrg_current_limit_reduced_due_to_low_cell_voltage
+    dischrg_current_limit_reduced_due_to_low_pack_voltage
+    dischrg_current_limit_reduced_due_to_voltage_fail_safe
+    dischrg_current_limit_reduced_due_to_communication_fail_safe
+    chrg_current_limit_reduced_due_to_high_soc
+    chrg_current_limit_reduced_due_to_high_cell_resistance
+    chrg_current_limit_reduced_due_to_temp
+    chrg_current_limit_reduced_due_to_high_cell_voltage
+    chrg_current_limit_reduced_due_to_high_pack_voltage
+    chrg_current_limit_reduced_due_to_chrg_latch
+    chrg_current_limit_reduced_due_to_alternate_current_limit
+    dischrg_limit_enforcement_fault
+    chrgr_safety_relay_fault
+    internal_hardware_fault
+    internal_heatsink_thermistor_fault
+    internal_software_fault
+    highest_cell_voltage_too_high_fault
+    lowest_cell_voltage_too_low_fault
+    pack_too_hot_fault
+    internal_communication_fault
+    cell_balancing_stuck_off_fault
+    weak_cell_fault
+    low_cell_voltage_fault
+    open_wiring_fault
+    current_sensor_fault
+    highest_cell_voltage_over_5v_fault
+    cell_asic_fault
+    weak_pack_fault
+    fan_monitor_fault
+    thermistor_fault
+    external_communication_fault
+    redundant_power_supply_fault
+    high_voltage_isolation_fault
+    input_power_supply_fault
+    chrg_limit_enforcement_fault
+
+bms_cell_values	
+    cell_id
+    cell_voltage
+    cell_internal_resistance
+    cell_open_voltage
+    cell_shunt_status
+
+bms_battery_health	
+    battery_adaptive_total_capacity
+    battery_soh
+    battery_total_cycles
+
+controller_motor_usage_1_REAR	
+    motorcontroller_1_average_motor_stator_current
+    motorcontroller_1_average_motor_phase_voltage
+    motorcontroller_1_motor_actual_torque
+    motorcontroller_1_target_torque
+    motorcontroller_1_motor_rpm
+    motorcontroller_1_propotional_speed_limit
+    motorcontroller_1_calculated_battery_current
+    motorcontroller_1_controller_capacitor_voltage
+    motorcontroller_1_throttle_input
+
+controller_motor_status_1_REAR	
+    motorcontroller_1_drive_direction 
+    motorcontroller_1_motor_temp
+    motorcontroller_1_controller_temp
+    motorcontroller_1_distance_travelled
+    motorcontroller_1_seat_switch
+
+controller_status_1_REAR	
+    motorcontroller_1_controller_status
+
+controller_fault_status_1_REAR	
+    motorcontroller_1 fault_count
+    motorcontroller_1 fault_code
+
+controller_motor_usage_2_FRONT	
+    motorcontroller_2_average_motor_stator_current
+    motorcontroller_2_average_motor_phase_voltage
+    motorcontroller_2_motor_actual_torque
+    motorcontroller_2_target_torque
+    motorcontroller_2_motor_rpm
+    motorcontroller_2_propotional_speed_limit
+    motorcontroller_2_calculated_battery_current
+    motorcontroller_2_controller_capacitor_voltage
+
+controller_motor_status_2_FRONT	
+    motorcontroller_2_motor_temp
+    motorcontroller_2_distance_travelled
+    motorcontroller_2_seat_switch
+    motorcontroller_2_controller_temp
+
+controller_status_2_FRONT	
+    motorcontroller_2_controller_status
+
+controller_fault_status_2_FRONT	
+    motorcontroller_2 fault_count
+    motorcontroller_2 fault_code
+
+
+DC_DC_Conv_fault_status	
+    Over_temperature_shutdown
+    output_overcurrent_alarm
+    output_overvoltage_alarm
+    output_undervoltage_alarm
+    input_overvoltage_alarm
+    input_undervoltage_alarm
+    output_shortcircuit_protection
+    internal_fault_alarm
+    communication_fault_alarm
+    reserved
+
+DC_DC_Conv_OutputCurrent	
+   12Vconv_Outputcurrent
+
+DC_DC-conv_OutputVoltage	
+   12Vconv_Outputvoltage
+
+DC_DC_conv_workingstatus	
+   working_status
+
+DC_DC_Conv_Temperature	
+   DC_DC_converter_inner_temperature
+
+EPAS_oe_response_state	
+    ECUState
+    ECUTemperature
+    angular_velocity
+    fault_enumeration
+    steering_angle
+
+version_details	
+    BMS_Firmware_Version
+    BMS_Profile_Checksum
+    BMS_Serial_Number
+    MC1_Firmware_Number
+    MC1_Profile_Checksum
+    MC1_Serial_Number
+    MC2_Firmware_Number
+    MC2_Profile_Checksum
+    MC2_Serial_Number
+    mew_bootloader_firmware_version
+    VIN_number
+    mew_firmware_version
+    mew_hardware_version
+
+orion_bms_fault	
+    7E3_byte1
+    7E3_byte2
+    7E3_byte3
+    7E3_byte4
+    7E3_byte5
+    7E3_byte6
+    7E3_byte7
+    7E3_byte8
+    7EB_byte1
+    7EB_byte2
+    7EB_byte3
+    7EB_byte4
+    7EB_byte5
+    7EB_byte6
+    7EB_byte7
+    7EB_byte8
+
+vehicle_location	
+    latitude
+    longitude
+    timezone
