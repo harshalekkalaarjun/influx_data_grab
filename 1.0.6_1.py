@@ -1,12 +1,10 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext, filedialog, messagebox
-import sys
-import os
+from influxdb import InfluxDBClient
 import pandas as pd
 import pytz
 import threading
-from influxdb import InfluxDBClient
-
+import os
 
 # ==================================================
 # Helper Functions for Loading Measurement Fields
@@ -15,13 +13,13 @@ from influxdb import InfluxDBClient
 def load_measurements_fields(filename):
     """
     Load measurement fields from a file.
-    
+
     Expected file format:
       - A measurement block starts with a non-indented line containing:
             measurement_name<tab>first_field
       - Subsequent indented lines contain additional field names.
       - Blocks are separated by blank lines.
-    
+
     Returns a dictionary mapping measurement names to lists of field keys.
     """
     measurements_fields = {}
@@ -200,18 +198,20 @@ class InfluxDBGUI(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("InfluxDB Query Tool with CSV Measurements")
+        # Set the window icon using an ICO file.
+        try:
+            icon_image = tk.PhotoImage(file="Influx-DB.png")
+            self.iconphoto(True, icon_image)
+ # Replace with your new icon file
+        except Exception as e:
+            print(f"Icon not set: {e}")
         self.geometry("750x750")
         self.create_widgets()
-        # If using an ICO for the window icon:
-        self.iconbitmap("Influx-DB.ico")
-        # Using a PhotoImage (requires PNG support in Tk):
-        icon_image = tk.PhotoImage(file="Influx-DB.png")
-        self.iconphoto(False, icon_image)
 
     def create_widgets(self):
-        # ==================================================
+        # --------------------------------------------------
         # InfluxDB Connection Parameters Frame
-        # ==================================================
+        # --------------------------------------------------
         frame_conn = ttk.LabelFrame(self, text="InfluxDB Connection")
         frame_conn.grid(column=0, row=0, padx=10, pady=10, sticky="W")
 
@@ -236,9 +236,9 @@ class InfluxDBGUI(tk.Tk):
         ttk.Label(frame_conn, text="Database:").grid(column=0, row=4, sticky="W")
         ttk.Entry(frame_conn, width=20, textvariable=self.database_var).grid(column=1, row=4, padx=5, pady=2)
 
-        # ==================================================
+        # --------------------------------------------------
         # Filtering Parameters Frame
-        # ==================================================
+        # --------------------------------------------------
         frame_filter = ttk.LabelFrame(self, text="Filtering Parameters")
         frame_filter.grid(column=0, row=1, padx=10, pady=10, sticky="W")
 
@@ -267,9 +267,9 @@ class InfluxDBGUI(tk.Tk):
         ttk.Label(frame_filter, text="Timezone:").grid(column=0, row=5, sticky="W")
         ttk.Entry(frame_filter, width=20, textvariable=self.timezone_var).grid(column=1, row=5, padx=5, pady=2)
 
-        # ==================================================
+        # --------------------------------------------------
         # CSV / Measurement Source Options Frame
-        # ==================================================
+        # --------------------------------------------------
         frame_csv = ttk.LabelFrame(self, text="Measurement Source Options")
         frame_csv.grid(column=0, row=2, padx=10, pady=10, sticky="W")
 
@@ -285,9 +285,9 @@ class InfluxDBGUI(tk.Tk):
         self.select_csv_btn = ttk.Button(frame_csv, text="Select File", command=self.select_csv_file)
         self.select_csv_btn.grid(column=2, row=1, padx=5, pady=2)
 
-        # ==================================================
+        # --------------------------------------------------
         # Run Button and Output Display
-        # ==================================================
+        # --------------------------------------------------
         self.run_button = ttk.Button(self, text="Run Query", command=self.on_run_query)
         self.run_button.grid(column=0, row=3, padx=10, pady=10, sticky="W")
 
@@ -295,7 +295,7 @@ class InfluxDBGUI(tk.Tk):
         self.output_text.grid(column=0, row=4, padx=10, pady=10)
 
     def select_csv_file(self):
-        """ Opens a file dialog for selecting the CSV (or text) file and sets the filename variable. """
+        """Opens a file dialog for selecting the CSV (or text) file and sets the filename variable."""
         filename = filedialog.askopenfilename(
             title="Select Measurement Fields File",
             filetypes=[("Text Files", "*.txt"), ("CSV Files", "*.csv"), ("All Files", "*.*")]
